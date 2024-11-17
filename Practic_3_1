@@ -1,0 +1,60 @@
+#include <iostream>
+#include <windows.h>
+#include <climits> 
+
+using namespace std;
+
+int main()
+{
+    SetConsoleOutputCP(1251);
+
+    short a, b, x;
+    int tempA, tempB; 
+    int y;
+
+ma:cout << "Введіть a --> ";
+    cin >> tempA;
+
+    if (tempA < SHRT_MIN || tempA > SHRT_MAX) {
+        cout << "Помилка: значення a поза діапазоном " << endl;
+        goto ma;
+    }
+    a = static_cast<short>(tempA); 
+
+mb:cout << "Введіть b --> ";
+    cin >> tempB;
+
+    if (tempB < SHRT_MIN || tempB > SHRT_MAX) {
+        cout << "Помилка: значення b поза діапазоном " << endl;
+        goto mb;
+    }
+    b = static_cast<short>(tempB); 
+
+    if (a == b) {
+        y = -5;
+    }
+    else if (a > b) {
+        if (a == 0) {
+            cout << "Помилка: ділення на 0." << endl;
+            goto ma;
+        }
+        y = (b / a) + 21;
+    }
+    else {
+        if (b == 0) {
+            cout << "Помилка: ділення на 0." << endl;
+            goto mb;
+        }
+        y = (3 * a / b) + 1;
+    }
+
+    if (y < SHRT_MIN || y > SHRT_MAX) {
+        cout << "Помилка: результат виходить за діапазон значень типу short." << endl;
+    }
+    else {
+        x = static_cast<short>(y); 
+        cout << "Результат x = " << x << endl;
+    }
+
+    return 0;
+}
